@@ -1,0 +1,445 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+
+\documentclass{beamer}
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage{url}
+
+
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.markings}
+\tikzset{
+  closed/.style = {decoration = {markings, mark = at position 0.5 with { \node[transform shape, xscale = .7, yscale=.4] {/}; } }, postaction = {decorate} },
+  open/.style = {decoration = {markings, mark = at position 0.5 with { \node[transform shape, scale = .7] {$\circ$}; } }, postaction = {decorate} }
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[RH for Hypersurfaces]{The Riemann Hypothesis for Hypersurfaces over Finite Fields} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Martin Allen} % Your name
+\institute[Universit\'{a} di Milano/ Universit\'{e} Paris-Sud] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Universit\'{a} di Milano\\ Universit\'{e} Paris-Sud \\ % Your institution for the title page
+\medskip
+\begin{center}
+Advisors: Prof. Tam\'{a}s Szamuely, Prof. David Harari
+\end{center}}
+
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{Introduction} 
+
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Introduction}
+Let $X/\mathbb{F}_{q}$ be a projective, smooth, geometrically irreducible variety of dimension $d$ over the finite field of $q=p^{r}$ elements. Define the \textbf{geometric zeta function}
+$$Z(X,T) = exp(\sum\limits_{n=1}^{\infty}|X(\mathbb{F}_{q^{n}})|\frac{T^{n}}{n})$$
+\pause
+It is easy to check that $Z(X,q^{-s}) = \prod\limits_{x\in |X|}(1-\mathbb{N}(x)^{-s})^{-1}$, this is the relation with the classical Hasse-Weil zeta function.
+\pause
+\\The Weil conjectures were a series of statements about $Z(X,T)$ proposed by Andr\'{e} Weil in his famous 1949 paper. Among them are the following:
+\begin{itemize}
+\pause 
+\item \emph{(Rationality)} $Z(X,T)\in \mathbb{Q}(T)$.
+\pause
+\item \emph{(Functional Equation)} $Z(X,\frac{1}{q^{d}T}) = \pm q^{-\frac{d\cdot \chi}{2}}T^{\chi}Z(X,T)$, where $\chi$ is the self intersection of the diagonal of $X$ in $X\times X$, i.e. the ``Poincar\'{e}-Euler characteristic" of $X$. 
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+\pause
+\item \emph{(The Riemann Hypothesis) 
+$$Z(X,T) = \prod\limits_{n=0}^{2d}P_{n}(T)^{(-1)^{n+1}}$$ where the $P_{n}(T)$ are $q$-Weil polynomials pure of weight $n$.} 
+\end{itemize}
+\pause
+A polynomial $P(T) = \prod\limits_{i=0}^{k}(1-\alpha_{i}T) \in \mathbb{Z}[T]$ is a $q$\textbf{-Weil polynomial pure of weight $n$} if for every complex embedding $\mathbb{Q}(\alpha_{1},\ldots,\alpha_{k})\hookrightarrow \mathbb{C}$, $|\alpha_{i}| = q^{n/2}$. An number $\alpha$  which is a root of such a polynomial is called a \textbf{$q$-Weil number of weight $n$}. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+\pause
+\item Historically the proofs of the first two conjectures came first, both consequences of the fact that $\ell$-adic cohomology is a Weil cohomology theory. 
+\pause 
+\item Riemann Hypothesis resisted, proved first by Deligne in 1974 (Weil I), several proofs given since then. 
+\pause
+\item In this talk we sketch a proof of the case where $X$ is a smooth projective hypersurface (Katz 2014). It was shown (Scholl 2011) that by a deformation argument one can reduce the general case to that of hypersurfaces.\pause Together these two papers constitute a new proof which does not use the theory of Lefschetz pencils or the $\ell$-adic Fourier transform. 
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+\frametitle{$L$-Functions}
+\begin{itemize}
+\pause
+\item For now let $X_0$ be any algebraic variety over $\mathbb{F}_{q}$
+\pause
+\item Fixing a geometric point $\bar{x} \rightarrow X_0$, we have an equivalence of categories between lisse  $\overline{\mathbb{Q}}_{\ell}$-sheaves on $X_0$ (also called \textbf{$\ell$-adic local systems}) and finite dimensional representations of $\pi_{1}^{\acute{e}t}(X_0,\bar{x})$ defined over $\overline{\mathbb{Q}}_{\ell}$. \pause The correspondence is given by ``taking stalks" $\mathcal{F} \rightarrow \mathcal{F}_{\bar{x}}$. 
+\pause
+\item For any closed point $Spec(\mathbb{F}_{q^{n}}) = \{\wp\} \rightarrow X_0$ ``below $\bar{x}$", we have by
+ functoriality a map $Gal(\overline{\mathbb{F}}_{q^n}/\mathbb{F}_{q^n}) \simeq \pi_{1}^{\acute{e}t}(\wp,
+  \bar{x}) \rightarrow \pi_{1}^{\acute{e}t}(X_0,\bar{x})$. \pause This map is unique up to conjugation in
+   $\pi_{1}^{\acute{e}t}(X_0,\bar{x})$. 
+\pause
+\item We denote by $Frob_{\wp}$ the image of the inverse of the Frobenius substitution (rather, a representative of the conjugacy class), \pause and we define the \textbf{$L$-function} of a lisse $\overline{\mathbb{Q}}_{\ell}$-sheaf $\mathcal{F}$ as 
+$$L(X_0,\mathcal{F}, T) = \prod\limits_{\wp\in |X|}det(1-T^{deg(\wp)}Frob_{\wp}|\mathcal{F}_{\bar{x}})^{-1}$$.
+\pause
+\item Example: $L(X_0,\mathbb{Q}_{\ell}, q^{-s})$ is the classical zeta function of $X_0$, since $\mathbb{Q}_{\ell}$ is the local system corresponding to the 1-dimensional trivial rep. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{$L$-Functions}
+\begin{itemize}
+\pause
+\item Grothendieck's trace formula gives the following cohomological interpretation of the $L$-function:
+$$L(X_0,\mathcal{F},T) = \prod\limits_{i=0}^{2d}det(1-TFrob_{q}|H_{c}^{i}(X,\mathcal{F}))^{(-1)^{i+1}}$$
+where $Frob_{q}$ is the so-called geometric Frobenious arising from the pullback on cohomology by the endomorphism on $X = X_0\times Spec(\overline{\mathbb{F}}_{q})$ given by $(id_{X_0}\times f^{-1}).$
+\pause
+\item It also follows from the trace formula that $Z(X_0,T) = L(X_0,\mathbb{Q}_{\ell},T)$, and by an elementary argument one can show that the Riemann hypothesis is equivalent to the statement that $Frob_{q}|H_{c}^{i}(X,\mathbb{Q}_{\ell})$ has as eigenvalues $q$-Weil numbers of weight $i$ (Weil I.1.6). 
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{The Key Lemma}
+For a fixed embedding $\iota:\overline{\mathbb{Q}}_{\ell} \rightarrow \mathbb{C}$, we say that a local system $\mathcal{F}$ is \textbf{$\iota$-real} if each Euler factor $det(1-TFrob_{\wp}|\mathcal{F})^{-1}$ lies in $\mathbb{R}[[T]]$ via $\iota$. 
+
+\pause
+The key lemma of Katz's paper is the following: 
+\pause
+\begin{lemma}[Key Lemma]
+Let $U_0$ be a smooth geometrically connected affine  curve, $\mathcal{F}$ an $\ell$-adic local system on $U_0$ which is $\iota$-real. Suppose that for some closed point $\wp_{0}$ that every eigenvalue $\alpha_{\wp_{0},i}$ of $Frob_{\wp_0}|\mathcal{F}$ has $|\iota(\alpha_{\wp_{0},i})| =1$. Then for every closed point $\wp$ of $U_0$, every eigenvalue $\alpha_{\wp,i}$ of $Frob_{\wp}|\mathcal{F}$ has $|\iota(\alpha_{\wp,i})| = 1$. 
+\end{lemma}
+\end{frame}
+
+\begin{frame}
+\frametitle{Smooth Proper Base Change}
+Admitting the lemma, the other essential ingredient is Grothendieck's smooth and proper base change theorem:
+\pause
+\begin{theorem}[Smooth and Proper Base Change]
+Let $f:\mathcal{X}\rightarrow U_0$ be a smooth and proper morphism, and $\mathcal{F}$ a lisse $\overline{\mathbb{Q}}_{\ell}$-sheaf on $\mathcal{X}$. Then the sheaves $R^{i}f_{*}\mathcal{F}$ are lisse $\overline{\mathbb{Q}}_{\ell}$-sheaves on $U_0$. Furthermore, the Frobenius action is compatible in the sense that for any closed point $\wp$ of $U_{0}$, the fibre $X_{\wp,0}$ is smooth and proper over $\mathbb{F}_{\mathbb{N}(\wp)}$ and
+$$det(1-TFrob_{\mathbb{N}(\wp)}|H^{i}(X_{\wp},\mathcal{F})) = det(1-TFrob_{\wp}|R^{i}f_{*}\mathcal{F})$$
+\end{theorem}
+
+
+\pause
+Remember that $R^{i}f_{*}\mathcal{F}$ is just the sheaf on $U_{0}$ associated to the presheaf $V \mapsto H^{i}(\mathcal{X}\times_{U_0}V,\mathcal{F})$, and the stalk of $R^{i}f_{*}\mathcal{F}$ at a geometric point is just the $i$-th cohomology group of the fibre over that point.\\ 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Smooth and Proper Base Change }
+For intuition behind smooth proper base change, compare with Ehresmann's fibration lemma from differential topology: A proper submersion $f:M\rightarrow N$ between smooth (connected) manifolds is a locally trivial fibre bundle. 
+
+\pause
+\vspace{1cm}
+This means that there is an open cover $\{U_{i}\}$ of $N$ by balls such that $f^{-1}(U_{i}) \rightarrow U_{i}\times f^{-1}(0)$ is a diffeomorphism over $U_{i}$. 
+
+\pause
+\vspace{1cm}
+Hence for any inclusion of balls $V\subset U_{i}$, the inclusion $f^{-1}(V) \rightarrow f^{-1}(U_{i})$ is a homotopy equivalence. This means that the presheaf $U \mapsto H^{i}(f^{-1}(U),\underline{\mathbb{R}})$ is locally constant, hence so are the $R^{i}f_{*}\underline{\mathbb{R}}$. 
+ 
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Cohomology of Hypersurfaces}
+\pause
+The cohomology of a smooth hypersurface $X_0 \subset \mathbb{P}_{\mathbb{F}_{q}}^{n+1}$ of dimension $n$ is well known and can be computed using the Gysin sequence. 
+\pause
+For $i\neq n$, $H^{i}(X,\mathbb{Q}_{\ell}) \simeq H^{i}(\mathbb{P}^{n},\mathbb{Q}_{\ell})$, which is either $0$ for $i$ odd, or $ \mathbb{Q}_{\ell}(-i/2)$ for $i$ even. For $i=n$, there is a s.e.s. 
+$$0 \rightarrow Ker \rightarrow H^{n}(X,\mathbb{Q}_{\ell}) \rightarrow H^{n}(\mathbb{P}^{n},\mathbb{Q}_{\ell}) \rightarrow 0$$
+\pause
+Thus $Ker$ measures the cohomological difference between $X$ and $\mathbb{P}^{n}$ exactly.\\ \pause Letting $P(T) = det(1-Frob_{q}|Ker)^{-1}$, it follows that the zeta function of a hypersurface takes the following shape:
+
+$$Z(X_0,T)  = P(T)^{(-1)^{n+1}}Z(\mathbb{P}^{n}_{\mathbb{F}_{q}},T)$$
+
+\pause By rationality, it follows that $P(T)\in \mathbb{Q}[T]$, hence that $det(1-TFrob_{q}|H^{i}(X,\mathbb{Q}_{\ell})) \in \mathbb{Q}[T]$ for all $i$.
+ 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Proof of the Riemann Hypothesis (RH)}
+\pause
+In order to prove that a smooth hypersurface $X_{0}$ of degree $d$ and dimension $n$ satisfies RH, it suffices to show that $Frob_{q}|H^{n}(X,\mathbb{Q}_{\ell})$ has eigenvalues $q$-Weil numbers of weight $n$. This can be done by means of a deformation argument.\vspace{2mm}
+\pause
+
+Let $X'_{0}/\mathbb{F}_{p}$ be a smooth hypersurface of degree $d$ and dimension $n$ which \emph{does} satisfy RH. Then extending by scalars, $X'_{0}/\mathbb{F}_{q}$ also satisfies RH. \\
+
+\pause 
+Let $X_{0}$ be defined by $F$ and $X'_{0}$ by $G$. Consider the one parameter family $\mathcal{X}$ defined by $tG + (1-t)F$:
+
+\begin{center}
+\begin{tikzcd}
+\mathcal{X} \arrow{dr}[swap]{f} \arrow[hook]{r}{i} & \mathbb{P}_{\mathbb{F}_{q}}^{n+1}\times \mathbb{A}_{\mathbb{F}_{q}}^{1} \arrow{d} \\
+& \mathbb{A}^{1}_{\mathbb{F}_{q}} \\
+\end{tikzcd}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proof of RH}
+As the fibre over $t=0,1$ is smooth, there is a non-zero open set $U_{0}$ of the affine line over which $f$ is smooth and proper\\ \vspace{2mm}
+\pause
+By smooth and proper base change, $R^{i}f_{*}\mathbb{Q}_{\ell}$ is a lisse $\overline{\mathbb{Q}}_{\ell}$-sheaf on $U_0$. Furthermore, it is $\iota$-real for any $\iota$ since 
+$$det(1-TFrob_{\wp}|R^{i}f_{*}\mathbb{Q}_{\ell}) = det(1-TFrob_{\mathbb{N}(\wp)}|H^{i}(X_{\wp},\mathbb{Q}_{\ell}))$$
+\pause
+\noindent and we just proved that the factors in the cohomological formulation of the zeta function of a smooth projective hypersurface are polynomials with rational coefficients.  
+
+\end{frame}
+
+\begin{frame}
+\pause
+Letting $\wp_{1}$ be the prime $t=1$, we know that $Frob_{\wp_{1}}|R^{n}f_{*}\mathbb{Q}_{\ell}(n/2)_{\bar{u}_1}$ has eigenvalues of absolute value $1$ via any $\iota$, where $R^{n}f_{*}\mathbb{Q}(n/2)$ is the $(n/2)$ Tate-twist of $R^{n}f_{*}\mathbb{Q}_{\ell}$.\vspace{1cm} \\
+\pause
+As $R^{n}f_{*}\mathbb{Q}(n/2)$ is still $\iota$-real for any $\iota$, it follows by the key lemma that it is also $\iota$-pure of weight $0$.\vspace{1cm} \\
+\pause 
+Hence $R^{n}f_{*}\mathbb{Q}_{\ell}$ is pure of weight $n$. This is implies the result.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Finishing the Proof}
+\pause
+\begin{itemize}
+\item It remains to find a smooth model for a hypersurface of dimension $n$ and degree $d$ over $\mathbb{F}_{p}$ for any possible $(n,d,p)$ which satisfies RH. 
+\pause
+\item This turns out not to be so bad, because it's easy to show using Grothendieck's trace formula that for hypersurfaces, RH is equivalent to the ``point counting formula", i.e.
+\pause
+\begin{center}
+
+$X_{0}$ satisfies RH $\Leftrightarrow |X_{0}(\mathbb{F}_{q})| = |\mathbb{P}^{n}(\mathbb{F}_{q})| + O(q^{n/2})$
+\end{center}
+where $q=p^{k}$. 
+\pause
+
+\end{itemize}
+Hence we just need to find enough hypersurfaces which satisfy this equality.
+\end{frame}
+
+\begin{frame}
+\frametitle{Point Counting}
+\begin{itemize}
+\item In the case of $(p,d)=1$, one can take the so-called Fermat hypersurfaces given by equations of the form $\sum\limits_{i=1}^{n+2}X_{i}^{d}$. The fact that they satisfy the equality was proven by Weil in his famous 1949 paper "Number of Solutions of Equations in Finite Fields". That proof is simple and uses elementary properties of Gauss and Jacobi sums.  
+\pause
+\item If $d=2$, then $p=2$ is the only problematic prime and even this isn't so bad to work out. It depends on whether $n$ is even or odd.
+\pause
+\item If $d>2$ and $p|d$, Katz proves that Gabber's hypersurface $X_{1}^{d} + \sum\limits_{i = 1}^{n+2}X_{i}X_{i+1}^{d-1}$ is a smooth model which satisfies RH. The argument given in [Delsarte 1951] is simple, using only elementary manipulations of Gauss and Jacobi sums. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Point Counting}
+Here we will give a sketch of Katz's argument showing that the Fermat hypersurfaces and Gabber's surface satisfy the point counting formula.
+\pause
+Considering the affine points of our hypersurface $X_{0}$, it is equivalent to prove the following affine version of the point counting formula:
+\begin{center}
+$X_{0}$ satisfies RH $\Leftrightarrow |X_{0}^{aff}(\mathbb{F}_{q})| = q^{n+1} + O(q^{n+2}/2)$
+\end{center}
+\pause
+
+\begin{definition}
+Let $N\geq 1$ be an integer, and $W=(w_1,\ldots,w_N)$ be an $N$-tuple of non-negative integers. Write $X^{W}$ for the monomial $X_{1}^{w_{1}}\cdots X_{N}^{w_{N}}$. We say that a set of monomials $\{X^{W_{\nu}}\}_{\nu}$ is \textbf{linearly independent} if the set of integer vectors $W_{\nu}$ are linearly independent in $\mathbb{Q}^N$. 
+\end{definition}
+\pause
+Examples: Fermat hypersurfaces, Gabber's hypersurface.
+\end{frame}
+
+\begin{frame}
+We have the following theorem which implies our result ($N:=n+2$):
+\begin{theorem}
+Let $N\geq 1$, and let $X^{W_{1}},\ldots,X^{W_{N}}$ be $N$ linearly independent monomials in $N$ variables. Suppose that each variable occurs in at most $2$ of these monomials. Then for the affine hypersurface $V$ defined by $\sum_{i}X^{W_{i}} = 0$ in $\mathbb{A}^{N}$, and for various finite fields $\mathbb{F}_{q}$ we have 
+$$|V(\mathbb{F}_{q})| = q^{N-1} + O(q^{N/2})$$
+\end{theorem}
+\pause
+Modulo a simple combinatorial lemma, Katz uses ``Delsarte's theorem" to prove this. \pause We state Delsarte's theorem in the language of group schemes:\pause
+
+\begin{theorem}[Delsarte's Theorem]
+Let $N>k\geq 0$, and let $\phi:\mathbb{G}_{m}^{N}\rightarrow \mathbb{G}_{m}^{N-k}$ be a surjective morphism of split tori. Denote by $\sigma:G^{N-k} \rightarrow \mathbb{A}^{1}$ the function which "sums coordinates". Then for various finite extensions $\mathbb{F}_q/\mathbb{F}_p$ we have the estimate:
+$$ |\{x\in \mathbb{G}_{m}^{N}(\mathbb{F}_q)|\sigma(\phi(x))=0\}| = \frac{(q-1)^{N}}{q} + O(q^{(N+k)/2})$$
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sketch of Delsarte's Theorem}
+\begin{itemize}
+\item Reduce to the case $k=0$. 
+\pause
+\item For any $\mathbb{F}_{q}$, the short exact sequence
+$1 \rightarrow \mu \rightarrow \mathbb{G}_{m}^{N} \xrightarrow{\phi} \mathbb{G}_{m}^{N} \rightarrow 1$
+\noindent gives rise to a long exact sequence 
+
+$$0 \rightarrow \mu(\mathbb{F}_{q}) \rightarrow \mathbb{G}_{m}^{N}(\mathbb{F}_q) \xrightarrow{\phi} \mathbb{G}_{m}^{N}(\mathbb{F}_q) \rightarrow H^{1}_{fppf}(Spec(\mathbb{F}_q),\mu) \rightarrow 0$$
+\noindent by Hilbert's theorem 90, \pause which we rewrite simply as 
+$$0 \rightarrow ker \rightarrow \mathbb{G}_{m}^{N}(\mathbb{F}_q) \xrightarrow{\phi} \mathbb{G}_{m}^{N}(\mathbb{F}_q) \rightarrow coker \rightarrow 0$$
+\pause
+\item Writing $t\in \mathbb{G}_{m}^{N}(\mathbb{F}_{q}) = (\mathbb{F}_{q}^{\times})^N$ as $(t_{1},\ldots,t_{n})$, we see that 
+\begin{small}
+$$|\{t\in (\mathbb{F}_{q}^{\times})^N|\sigma(\phi(t))=0\}| = |ker|\cdot|\{t\in (\mathbb{F}_{q}^{\times})^N|\sum t_{i} = 0, t\in im(\phi)\}|.$$
+\end{small}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\item Thus we want to count $|ker|\cdot \{t\in (\mathbb{F}_{q}^{\times})^N|\sum t_{i} = 0, t\in im(\phi)\}$.\pause
+\item Identifying characters of $coker$ with those of $(\mathbb{F}_{q}^{\times})^N$ vanishing on the image of $\phi$, for $t$ in $(\mathbb{F}_{q}^{\times})^{N}$ we have:
+
+\[
+\sum\limits_{\chi \in coker^{\vee}} \chi(t) = \begin{cases}
+   |coker| & \mbox{if } t \in im(\phi) \\
+   0       &  else \\
+
+  \end{cases}
+\]
+\pause
+\item Since $|coker| = |ker|$, we derive that
+$$|ker|\cdot|\{t\in (\mathbb{F}_{q}^{\times})^{N}|\sum t_{i} = 0, t\in im(\phi)\}| = \sum\limits_{\{t | \sum t_{i} = 0\}}\sum\limits_{\chi\in  coker^{\vee}}\chi(t)$$ 
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item For $t\in (\mathbb{F}_{q}^{\times})^{N}$, to determine if $\sum t_{i} = 0$ we choose a non-trivial additive character $\psi$ of $\mathbb{F}_{q}$ and use that
+
+\[
+\sum\limits_{a\in \mathbb{F}_q}\psi(a\sum t_i) = \begin{cases}
+   q & \mbox{if } \sum t_i = 0 \\
+   0       &  else \\
+
+  \end{cases}
+\]
+\pause
+\item  Thus we have that 
+
+$$\sum\limits_{\{t | \sum t_{i} = 0\}}\sum\limits_{\chi\in coker^{\vee}}\chi(t)
+ = \frac{1}{q}\sum\limits_{a\in \mathbb{F}_q}\sum\limits_{\chi\in
+  coker^{\vee}}\sum\limits_{t\in (\mathbb{F}_{q}^{\times})^N} \chi(t)\psi(a\sum t_i)$$
+\pause
+\item It's now clear how we can use Gauss sums to finish this computation, which is really good since we can say something about their absolute values.  
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+It remains to give a uniform bound on $\mu(\mathbb{F}_{q})$ as $q\rightarrow \infty$ ...\\
+\pause
+\vspace{1cm}
+Not really a problem-- it arises as a group scheme from the group algebra of a finite abelian group. 
+\end{frame}
+
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 
